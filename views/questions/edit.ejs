@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+    <div class="border1">
+        <h1 style="text-align:center;">Edit Question</h1>
+        <form method="POST" action="/question/<%=foundque._id%>?_method=PUT">
+            <div class="form-group form">
+                <input class="form-control" type="text" name="question[name]" value="<%=foundque.name%>">    
+            </div>
+            <div class="form-group form">
+                <input class="form-control" type="text" name="question[subject]" value="<%=foundque.subject%>">    
+            </div>
+            <div class="form-group form">
+                <input class="form-control" type="text" name="question[image]" value="<%=foundque.image%>" placeholder="URL">    
+            </div>
+            
+            <div class="form-group form">
+                <input class="form-control" type="text" name="question[description]" value="<%=foundque.description%>">    
+            </div>
+
+            <div class="form-group form">
+                <button class="btn btn-lg btn-primary btn-block">Submit</button>    
+            </div>
+            
+        </form>
+        <div class="form-group form">
+            <a href="/question" class="btn btn-lg btn-default btn-block"> Go Back </a>
+        </div>
+        
+    </div>
+    
+<% include ../partials/footer%>

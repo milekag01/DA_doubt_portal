@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+    <div class="border">
+        <h1 style="text-align:center;">Add an answer</h1>
+        <form method="POST" action="/question/<%=question._id%>/answers">
+
+            <div class="form-group form">
+                <input class="form-control" type="text" name="answer[text]" placeholder="Answer">    
+            </div>
+            <div class="form-group form">
+                <button class="btn btn-primary btn-block">Submit</button>    
+            </div>
+            
+        </form>
+        <div class="form-group form">
+            <a href="/question/<%=question._id%>" class="btn btn-default btn-block"> Go Back </a>
+        </div>
+        
+    </div>
+    
+<% include ../partials/footer%>

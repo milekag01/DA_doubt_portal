@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+    
+    <div class="container">
+        <header class="jumbotron">
+            <div class="container">
+                <h1 class="page-header" style="font-size: 55px"> <i class="fas fa-book"></i> DA-IICT Doubt Portal </h1>
+                <p>Solve your doubts with your fellow batchmates, TA's & Faculty</p>
+                <a href="/question/new" class="btn btn-primary btn-lg"> Ask a new question </a>
+            </div>
+        </header>
+        
+        <div class="list-group" style="overflow:hidden;">
+            <% que.forEach(function(que){ %>
+                <a href="/question/<%=que._id%>" type="button" class="list-group-item text-center"><%= que.name %></a>    
+            <% }) %>
+        </div>
+    </div>
+    
+    
+<% include ../partials/footer %>

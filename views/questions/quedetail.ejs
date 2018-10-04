@@ -1,0 +1,64 @@
+<% include ../partials/header %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">Doubt Portal</p>
+                <div class="list-group">
+                    <a href="intranet.daiict.ac.in" target="_blank"><div class="list-group-item active">Intranet</div></a>
+                    <a href="https://opac.daiict.ac.in/" target="_blank"><div class="list-group-item">Resource Centre</div></a>
+                    <a href="https://courses.daiict.ac.in/login/index.php" target="_blank"><div class="list-group-item">Moodle</div></a>
+                </div>
+                <!-- <div id="map"></div> -->
+            </div>
+            <div class="col-md-9">
+                <div class="thumbnail">
+                    <img src="<%=foundque.image%>" class="img-responsive">            
+                    <div class="caption-full">
+                         <h4 class="pull-right"><%=foundque.subject%></h4>  
+                        <h4><a><%= foundque.name %></a></h4>
+                         <p><%= foundque.description%></p>
+                         <p><em>Submitted By: <%=foundque.author.username%></em></p>
+                         <%if(currentUser && foundque.author.id.equals(currentUser._id)){%>
+                             <a href="/question/<%=foundque._id%>/edit" class="btn btn-warning"> Edit </a>
+                             <form class="delete-form" method="POST" action="/question/<%=foundque._id%>?_method=DELETE">
+                                 <button class="btn btn-danger">Delete</button>
+                             </form>
+                         <%}%>
+                    </div>
+                </div>
+                
+                <div class="well">
+
+                    <div class="text-right">
+                         <a href="/question" class="btn btn-primary" style="float:left;"> Go Back </a>
+                        <a href="/question/<%=foundque._id%>/answers/new" class="btn btn-success"> Add an Answer </a>
+                    </div>
+
+                    <hr>
+                    <%foundque.answers.forEach(function(answer){%>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong><%=answer.author.username%></strong>
+                                <span class="pull-right">10 days ago</span>
+                                <p><%=answer.text%></p>
+                                <%if(currentUser && answer.author.id.equals(currentUser._id)){%>
+                                    <a href="/question/<%=foundque._id%>/answers/<%=answer._id%>/edit" class="btn btn-warning btn-xs">Edit</a>
+                                    
+                                    <form class="delete-form" action="/question/<%=foundque._id%>/answers/<%=answer._id%>?_method=DELETE" method="POST">
+                                        <button class="btn btn-danger btn-xs">Delete</button>
+                                    </form>
+                                <%}%>
+                            </div>
+                        </div>
+                    <%})%>
+                
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+            
+        </div> -->
+    </div>
+    
+<% include ../partials/footer %>
