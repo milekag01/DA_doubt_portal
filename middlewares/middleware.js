@@ -1,5 +1,6 @@
 var Question=require("../models/question");
 var Answer=require("../models/answer");
+var Blog = require("../models/blog");
 var middlewareobj={};
 
 middlewareobj.checkQueOwnership=function(req,res,next){
@@ -11,6 +12,28 @@ middlewareobj.checkQueOwnership=function(req,res,next){
             }
             else{
                 if(foundque.author.id.equals(req.user._id)){
+                    next();
+                }else{
+                    req.flash("error","You don't have permission to do that");
+                    res.redirect("back");
+                }
+            }
+        });
+    }else{
+        req.flash("error","You must be logged in to do that");
+        res.redirect("back");
+    }
+};
+
+middlewareobj.checkBlogOwnership=function(req,res,next){
+    if(req.isAuthenticated()){
+        Blog.findById(req.params.id,function(err,foundblog){
+            if(err || !foundblog){
+                req.flash("error","Blog not found");
+                res.redirect("back");
+            }
+            else{
+                if(foundblog.author.id.equals(req.user._id)){
                     next();
                 }else{
                     req.flash("error","You don't have permission to do that");

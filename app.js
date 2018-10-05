@@ -13,13 +13,13 @@ app.use(methodOverride("_method"));
 mongoose.connect("mongodb://milek:test123@ds123513.mlab.com:23513/daiictdoubtportal");
 
 var Question=require("./models/question");
+var Blog=require("./models/blog");
 var Answer=require("./models/answer")
 var User=require("./models/user");
-// var seedDB=require("./seeds");
-//seedDB();  //execute seedDB() function
 
 
 var queRoutes=require("./routes/queroutes");
+var blogRoutes=require("./routes/blogroutes");
 var answerRoutes=require("./routes/answerroutes");
 var userRoutes=require("./routes/userroutes");
 
@@ -50,6 +50,7 @@ app.use(function(req,res,next){
 });
 
 app.use("/question",queRoutes);
+app.use("/blog",blogRoutes);
 app.use("/question/:id/answers",answerRoutes);
 app.use("/",userRoutes);
 

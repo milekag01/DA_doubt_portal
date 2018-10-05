@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+    <div class="border1">
+        <h1 style="text-align:center;">Create new blog</h1>
+        <form method="POST" action="/blog">
+            <div class="form-group form">
+                <input class="form-control" type="text" name="name" placeholder="Title" required>    
+            </div>
+
+            <div class="form-group form">
+                <input class="form-control" type="text" name="image" placeholder="Image URL">    
+            </div>
+            
+            <div class="form-group form">
+                <input class="form-control" type="text" name="description" placeholder="What's on your mind">    
+            </div>
+
+            <div class="form-group form">
+                <button class="btn btn-lg btn-primary btn-block">Submit</button>    
+            </div>            
+        </form>
+
+        <div class="form-group form">
+            <a href="/blog" class="btn btn-lg btn-default btn-block"> Go Back </a>
+        </div>
+
+    </div>
+    
+<% include ../partials/footer%>

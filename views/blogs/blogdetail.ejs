@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">Doubt Portal</p>
+                <div class="list-group">
+                    <a href="http://intranet.daiict.ac.in" target="_blank"><div class="list-group-item active">Intranet</div></a>
+                    <a href="https://opac.daiict.ac.in/" target="_blank"><div class="list-group-item">Resource Centre</div></a>
+                    <a href="https://courses.daiict.ac.in/login/index.php" target="_blank"><div class="list-group-item">Moodle</div></a>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="thumbnail">
+                    <img src="<%=foundblog.image%>" class="img-responsive">            
+                    <div class="caption-full">
+                        <h4><a><%= foundblog.name %></a></h4>
+                         <p><%= foundblog.description%></p>
+                         <p><em>Submitted By: <%=foundblog.author.username%></em></p>
+                         <%if(currentUser && foundblog.author.id.equals(currentUser._id)){%>
+                             <a href="/blog/<%=foundblog._id%>/edit" class="btn btn-warning"> Edit </a>
+                             <form class="delete-form" method="POST" action="/blog/<%=foundblog._id%>?_method=DELETE">
+                                 <button class="btn btn-danger">Delete</button>
+                             </form>
+                         <%}%>
+                    </div>
+                </div>
+                
+                <div class="well">
+                    <div class="text-right">
+                         <a href="/blog" class="btn btn-primary" style="float:left;"> Go Back </a>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+<% include ../partials/footer %>
